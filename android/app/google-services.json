@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "60376515916",
+    "project_id": "bookish-52815",
+    "storage_bucket": "bookish-52815.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60376515916:android:60de5b3136fe99f4ddfbe9",
+        "android_client_info": {
+          "package_name": "com.bookish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "60376515916-fa0b2pi20aaaadofoa79qksvsdh7bo9t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bookish",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "60376515916-473ni4q70aj9u5kcbbf2a60vfqhumj31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDatb8q-oYStbGmPyjOL9GOjIr2wTv4_cU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "60376515916-473ni4q70aj9u5kcbbf2a60vfqhumj31.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

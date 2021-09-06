@@ -1,0 +1,7 @@
+export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
+export const SET_USER = 'SET_USER';
+
+export const SET_BOOK_LIST = 'SET_BOOK_LIST';
+
+export const ADD_BOOK_TO_CART = 'ADD_BOOK_TO_CART';
+export const REMOVE_BOOK_FROM_CART = 'REMOVE_BOOK_FROM_CART';
