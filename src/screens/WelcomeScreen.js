@@ -9,9 +9,7 @@ const WelcomeScreen = ({signInWithGoogle}) => {
   const dispatch = useDispatch();
 
   const signIn = () => {
-    console.log('pressaed');
     signInWithGoogle().then(data => {
-      console.log(data);
       dispatch({
         type: SET_USER,
         payload: data,

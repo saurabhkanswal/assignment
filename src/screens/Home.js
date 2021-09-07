@@ -41,7 +41,7 @@ const Home = ({userState, getBookList, bookState, navigation, cartState}) => {
       ToastAndroid.CENTER,
     );
   };
-  console.log('pop', cartState.bookIds);
+
   const renderBookList = ({item}) => {
     return (
       <Pressable

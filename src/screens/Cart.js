@@ -6,6 +6,7 @@ import {
   Pressable,
   Image,
   StyleSheet,
+  ToastAndroid,
 } from 'react-native';
 import {connect, useDispatch} from 'react-redux';
 import {
@@ -31,29 +32,35 @@ const Cart = ({cartState, navigation}) => {
   };
 
   const postBook = () => {
-    // const url = 'https://api.tago.care/assignment/saurabhkanswal';
-    // const params = JSON.stringify({
-    //   name: 'saurabh',
-    //   total: price,
-    //   books: cart,
-    // });
-    // Axios.post(url, params, {
-    //   headers: {
-    //     'content-type': 'application/json',
-    //   },
-    // })
-    //   .then(function (response) {
-    //     console.log(response);
-    //     console.log('worked');
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     console.log('FAIL');
-    //   });
-    navigation.navigate('Home');
-    dispatch({
-      type: RESET_CART,
+    const url = 'https://api.tago.care/assignment';
+    const params = JSON.stringify({
+      name: 'saurabh',
+      total: price,
+      books: cart,
     });
+    Axios.post(url, params, {
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then(function (response) {
+        navigation.navigate('Home');
+        dispatch({
+          type: RESET_CART,
+        });
+        ToastAndroid.showWithGravity(
+          'Book purchase success',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+      })
+      .catch(function (error) {
+        ToastAndroid.showWithGravity(
+          'SomeThing went wrong',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+      });
   };
 
   return (
