@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {getBookList} from '../action/Books';
 import {ADD_BOOK_TO_CART} from '../action/action.types';
 
-const Home = ({userState, getBookList, bookState, navigation}) => {
+const Home = ({userState, getBookList, bookState, navigation, cartState}) => {
   const {user} = userState;
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ const Home = ({userState, getBookList, bookState, navigation}) => {
       ToastAndroid.CENTER,
     );
   };
-
+  console.log('pop', cartState.bookIds);
   const renderBookList = ({item}) => {
     return (
       <Pressable
@@ -73,7 +73,9 @@ const Home = ({userState, getBookList, bookState, navigation}) => {
           <Icon
             name="add"
             size={30}
-            color="black"
+            color={
+              cartState.bookIds.includes(`${item.id}`) ? 'orange' : 'black'
+            }
             onPress={() =>
               addToCart({
                 bookPic: item.volumeInfo.imageLinks.thumbnail,
@@ -155,10 +157,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const {auth, book} = state;
+  const {auth, book, cart} = state;
   return {
     userState: auth.user,
     bookState: book,
+    cartState: cart,
   };
 };
 

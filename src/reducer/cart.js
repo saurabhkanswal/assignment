@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   cart: [],
+  bookIds: [],
 };
 
 export default (state = initialState, action) => {
@@ -16,6 +17,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           cart: [...state.cart, action.payload],
+          bookIds: [...state.bookIds, action.payload.id],
         };
       } else {
         return state;
@@ -30,6 +32,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         cart: [],
+        bookIds: [],
       };
     default:
       return state;
