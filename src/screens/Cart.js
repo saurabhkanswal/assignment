@@ -13,15 +13,16 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {REMOVE_BOOK_FROM_CART} from '../action/action.types';
-import Button from '../components/Button';
+import {REMOVE_BOOK_FROM_CART, RESET_CART} from '../action/action.types';
+
 import Buttton from '../components/Button';
 import Axios from 'axios';
 
-const Cart = ({cartState}) => {
+const Cart = ({cartState, navigation}) => {
   const {cart} = cartState;
   const dispatch = useDispatch();
   let price = 0;
+
   const removeBook = ({id}) => {
     dispatch({
       type: REMOVE_BOOK_FROM_CART,
@@ -30,28 +31,29 @@ const Cart = ({cartState}) => {
   };
 
   const postBook = () => {
-    const url = 'https://api.tago.care/assignment/saurabhkanswal';
-
-    const params = JSON.stringify({
-      name: 'saurabh',
-      total: price,
-      books: cart,
+    // const url = 'https://api.tago.care/assignment/saurabhkanswal';
+    // const params = JSON.stringify({
+    //   name: 'saurabh',
+    //   total: price,
+    //   books: cart,
+    // });
+    // Axios.post(url, params, {
+    //   headers: {
+    //     'content-type': 'application/json',
+    //   },
+    // })
+    //   .then(function (response) {
+    //     console.log(response);
+    //     console.log('worked');
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     console.log('FAIL');
+    //   });
+    navigation.navigate('Home');
+    dispatch({
+      type: RESET_CART,
     });
-
-    Axios.post(url, params, {
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-      .then(function (response) {
-        console.log(response);
-        console.log('worked');
-      })
-
-      .catch(function (error) {
-        console.log(error);
-        console.log('FAIL');
-      });
   };
 
   return (

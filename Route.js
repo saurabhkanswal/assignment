@@ -25,7 +25,7 @@ function BookStack() {
   );
 }
 
-const Route = ({authState}) => {
+const Route = ({authState, cartState}) => {
   return (
     <>
       {authState.isAuthenticated ? (
@@ -63,6 +63,8 @@ const Route = ({authState}) => {
                       color={focused ? 'orange' : 'black'}
                     />
                   ),
+                  tabBarBadge: cartState.cart.length > 0 ? '' : null,
+                  tabBarBadgeStyle: {backgroundColor: 'orange'},
                 })}
               />
             </Tab.Navigator>
@@ -84,9 +86,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const {auth} = state;
+  const {auth, cart} = state;
   return {
     authState: auth,
+    cartState: cart,
   };
 };
 

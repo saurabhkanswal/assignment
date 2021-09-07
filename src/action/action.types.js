@@ -5,3 +5,5 @@ export const SET_BOOK_LIST = 'SET_BOOK_LIST';
 
 export const ADD_BOOK_TO_CART = 'ADD_BOOK_TO_CART';
 export const REMOVE_BOOK_FROM_CART = 'REMOVE_BOOK_FROM_CART';
+
+export const RESET_CART = 'RESET_CART';

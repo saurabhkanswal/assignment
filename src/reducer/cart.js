@@ -1,4 +1,8 @@
-import {ADD_BOOK_TO_CART, REMOVE_BOOK_FROM_CART} from '../action/action.types';
+import {
+  ADD_BOOK_TO_CART,
+  REMOVE_BOOK_FROM_CART,
+  RESET_CART,
+} from '../action/action.types';
 
 const initialState = {
   cart: [],
@@ -21,6 +25,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         cart: state.cart.filter(item => item.id !== action.payload),
+      };
+    case RESET_CART:
+      return {
+        ...state,
+        cart: [],
       };
     default:
       return state;

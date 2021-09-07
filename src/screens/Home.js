@@ -1,5 +1,13 @@
 import React, {useEffect} from 'react';
-import {Text, View, StyleSheet, FlatList, Image, Pressable} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  Image,
+  Pressable,
+  ToastAndroid,
+} from 'react-native';
 import {connect, useDispatch} from 'react-redux';
 import {
   heightPercentageToDP as hp,
@@ -7,13 +15,32 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {getBookList} from '../action/Books';
+import {ADD_BOOK_TO_CART} from '../action/action.types';
 
 const Home = ({userState, getBookList, bookState, navigation}) => {
   const {user} = userState;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getBookList();
   }, []);
+
+  const addToCart = ({bookPic, title, price, id}) => {
+    dispatch({
+      type: ADD_BOOK_TO_CART,
+      payload: {
+        bookPic,
+        title,
+        price,
+        id,
+      },
+    });
+    ToastAndroid.showWithGravity(
+      'Item added to cart',
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
+  };
 
   const renderBookList = ({item}) => {
     return (
@@ -43,7 +70,21 @@ const Home = ({userState, getBookList, bookState, navigation}) => {
           </Text>
         </View>
         <View style={styles.listContainerRight}>
-          <Icon name="add" size={30} color="black" />
+          <Icon
+            name="add"
+            size={30}
+            color="black"
+            onPress={() =>
+              addToCart({
+                bookPic: item.volumeInfo.imageLinks.thumbnail,
+                title: item.volumeInfo.title,
+                price: item.volumeInfo.pageCount
+                  ? item.volumeInfo.pageCount
+                  : 0,
+                id: item.id,
+              })
+            }
+          />
         </View>
       </Pressable>
     );
@@ -69,7 +110,6 @@ const Home = ({userState, getBookList, bookState, navigation}) => {
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    // marginTop: 35,
     backgroundColor: 'white',
   },
   contentContainerStyle: {
